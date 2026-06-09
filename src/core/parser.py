@@ -1,8 +1,8 @@
-import re
 from email.header import decode_header
 from email.utils import parseaddr, parsedate_to_datetime
 from typing import Tuple, Optional
 from .types import Email
+
 
 def decode_str(value: str) -> str:
     if not value:
@@ -15,12 +15,14 @@ def decode_str(value: str) -> str:
             decoded_parts.append(part)
     return "".join(decoded_parts).strip()
 
+
 def parse_sender(from_header: str) -> Tuple[Optional[str], str, str]:
     name, email = parseaddr(from_header)
     name = decode_str(name) if name else None
     email = email.strip().lower()
-    domain = email.split('@')[-1] if '@' in email else ''
+    domain = email.split("@")[-1] if "@" in email else ""
     return (name, email, domain)
+
 
 def parse_email(msg) -> Email:
     # Parse sender
@@ -72,5 +74,5 @@ def parse_email(msg) -> Email:
         date=date,
         subject=subject,
         headers=headers,
-        body_snippet=body_snippet
+        body_snippet=body_snippet,
     )

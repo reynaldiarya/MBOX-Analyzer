@@ -1,19 +1,20 @@
 from collections import Counter
 import mailbox
 from datetime import datetime
-from typing import List, Dict, Optional, Tuple
-from .parser import parse_email, parse_sender
+from typing import List, Optional, Tuple
+from .parser import parse_email
 from .config import Settings
 from .types import Email, AnalyticsResult
 from .detection.spam import detect_spam
 from .detection.newsletter import detect_newsletter
+
 
 def analyze_mbox(
     mbox_path: str,
     top_n: int = 10,
     date_range: Optional[Tuple[datetime, datetime]] = None,
     sender_filter: Optional[List[str]] = None,
-    domain_filter: Optional[List[str]] = None
+    domain_filter: Optional[List[str]] = None,
 ) -> AnalyticsResult:
     sender_counter = Counter()
     domain_counter = Counter()
@@ -74,28 +75,32 @@ def analyze_mbox(
         top_senders = sender_counter.most_common(top_n)
         top_senders_list = [
             {
-                "rank": i+1,
+                "rank": i + 1,
                 "email": email,
                 "name": sender_names.get(email, ""),
                 "count": count,
-                "percentage": (count/total)*100 if total > 0 else 0.0
-            } for i, (email, count) in enumerate(top_senders)
+                "percentage": (count / total) * 100 if total > 0 else 0.0,
+            }
+            for i, (email, count) in enumerate(top_senders)
         ]
 
         # Top domains
         top_domains = domain_counter.most_common(top_n)
         top_domains_list = [
             {
-                "rank": i+1,
+                "rank": i + 1,
                 "domain": domain,
                 "count": count,
-                "percentage": (count/total)*100 if total > 0 else 0.0
-            } for i, (domain, count) in enumerate(top_domains)
+                "percentage": (count / total) * 100 if total > 0 else 0.0,
+            }
+            for i, (domain, count) in enumerate(top_domains)
         ]
 
         # Timeline data
         timeline_sorted = sorted(timeline.items(), key=lambda x: x[0])
-        timeline_data = [{"date": date, "count": count} for date, count in timeline_sorted]
+        timeline_data = [
+            {"date": date, "count": count} for date, count in timeline_sorted
+        ]
 
         spam_count = sum(1 for e in emails if e.is_spam)
         newsletter_count = sum(1 for e in emails if e.is_newsletter)
@@ -109,7 +114,7 @@ def analyze_mbox(
             timeline_data=timeline_data,
             spam_count=spam_count,
             newsletter_count=newsletter_count,
-            emails=emails
+            emails=emails,
         )
 
     except Exception:

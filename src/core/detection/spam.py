@@ -1,19 +1,32 @@
 import re
 from typing import Dict
 
+
 def detect_spam(email_obj) -> Dict:
     is_spam = False
     confidence = 0.0
     reasons = []
 
     # 1. Detect noreply@
-    if email_obj.sender_email.startswith("noreply@") or "noreply" in email_obj.sender_email:
+    if (
+        email_obj.sender_email.startswith("noreply@")
+        or "noreply" in email_obj.sender_email
+    ):
         is_spam = True
         confidence += 0.3
         reasons.append("Sender is noreply address")
 
     # 2. Marketing keywords
-    marketing_keywords = ["sale", "discount", "offer", "promo", "marketing", "advertisement", "buy now", "limited time"]
+    marketing_keywords = [
+        "sale",
+        "discount",
+        "offer",
+        "promo",
+        "marketing",
+        "advertisement",
+        "buy now",
+        "limited time",
+    ]
     subject_lower = (email_obj.subject or "").lower()
     body_lower = (email_obj.body_snippet or "").lower()
     for kw in marketing_keywords:
@@ -38,9 +51,9 @@ def detect_spam(email_obj) -> Dict:
         reasons.append("Contains List-Unsubscribe header")
 
     # 5. Suspicious sender patterns
-    if '@' in email_obj.sender_email:
-        local_part = email_obj.sender_email.split('@')[0]
-        if re.search(r'[0-9]{5,}', local_part) or re.search(r'[a-z]{20,}', local_part):
+    if "@" in email_obj.sender_email:
+        local_part = email_obj.sender_email.split("@")[0]
+        if re.search(r"[0-9]{5,}", local_part) or re.search(r"[a-z]{20,}", local_part):
             is_spam = True
             confidence += 0.2
             reasons.append("Suspicious sender local part pattern")
@@ -49,8 +62,4 @@ def detect_spam(email_obj) -> Dict:
     if confidence > 0.5:
         is_spam = True
 
-    return {
-        "is_spam": is_spam,
-        "confidence": confidence,
-        "reasons": reasons
-    }
+    return {"is_spam": is_spam, "confidence": confidence, "reasons": reasons}

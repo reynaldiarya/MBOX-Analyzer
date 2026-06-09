@@ -1,5 +1,6 @@
 from typing import Dict
 
+
 def detect_newsletter(email_obj) -> Dict:
     is_newsletter = False
     confidence = 0.0
@@ -13,7 +14,7 @@ def detect_newsletter(email_obj) -> Dict:
         "substack": "Substack",
         "beehiiv": "Beehiiv",
         "convertkit": "ConvertKit",
-        "sendgrid": "SendGrid"
+        "sendgrid": "SendGrid",
     }
     for key, name in platforms.items():
         if key in x_mailer:
@@ -31,7 +32,7 @@ def detect_newsletter(email_obj) -> Dict:
             "substack.com": "Substack",
             "beehiiv.com": "Beehiiv",
             "convertkit.com": "ConvertKit",
-            "sendgrid.net": "SendGrid"
+            "sendgrid.net": "SendGrid",
         }
         for domain, name in domain_platforms.items():
             if domain in sender_domain:
@@ -65,5 +66,5 @@ def detect_newsletter(email_obj) -> Dict:
         "is_newsletter": is_newsletter,
         "confidence": confidence,
         "platform": platform,
-        "reasons": reasons
+        "reasons": reasons,
     }

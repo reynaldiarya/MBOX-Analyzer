@@ -7,8 +7,14 @@ from .detection.spam import detect_spam
 from .detection.newsletter import detect_newsletter
 
 __all__ = [
-    "Email", "AnalyticsResult",
-    "parse_email", "parse_sender", "decode_str",
-    "analyze_mbox", "Settings", "generate_csv_content",
-    "detect_spam", "detect_newsletter"
+    "Email",
+    "AnalyticsResult",
+    "parse_email",
+    "parse_sender",
+    "decode_str",
+    "analyze_mbox",
+    "Settings",
+    "generate_csv_content",
+    "detect_spam",
+    "detect_newsletter",
 ]

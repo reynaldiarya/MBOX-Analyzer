@@ -6,6 +6,10 @@ from .pages.spam import show_spam
 from .pages.newsletters import show_newsletters
 
 __all__ = [
-    "show_overview", "show_top_senders", "show_top_domains",
-    "show_timeline", "show_spam", "show_newsletters"
+    "show_overview",
+    "show_top_senders",
+    "show_top_domains",
+    "show_timeline",
+    "show_spam",
+    "show_newsletters",
 ]

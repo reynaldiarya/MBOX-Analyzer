@@ -3,15 +3,12 @@
 Professional-grade email analytics and intelligence platform for processing and visualizing MBOX data exports.
 
 <p align="center">
-<img src="https://img.shields.io/badge/version-v1.0-blue.svg" />
-<img src="https://img.shields.io/badge/Python-3.10+-3776AB.svg" />
-<img src="https://img.shields.io/badge/Streamlit-1.57+-FF4B4B.svg" />
-<a href="LICENSE">
-<img alt="License" src="https://img.shields.io/badge/license-MIT-yellow.svg" target="_blank" />
-</a>
-<a href="https://codecov.io/gh/reynaldiarya/MBOX-Analyzer">
-<img src="https://codecov.io/gh/reynaldiarya/MBOX-Analyzer/branch/main/graph/badge.svg" />
-</a>
+   <img src="https://img.shields.io/badge/version-v1.0-blue.svg" />
+   <img src="https://img.shields.io/badge/Python-3.10+-3776AB.svg" />
+   <img src="https://img.shields.io/badge/Streamlit-1.57+-FF4B4B.svg" />
+   <a href="LICENSE">
+      <img alt="License" src="https://img.shields.io/badge/license-MIT-yellow.svg" target="_blank" />
+   </a>
 </p>
 
 ## Description

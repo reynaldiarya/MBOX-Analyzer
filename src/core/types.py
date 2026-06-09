@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Optional, List, Dict
 from pydantic import BaseModel
 
+
 class Email(BaseModel):
     sender_name: Optional[str] = None
     sender_email: str
@@ -16,6 +17,7 @@ class Email(BaseModel):
     newsletter_confidence: float = 0.0
     spam_reasons: List[str] = []
     newsletter_platform: Optional[str] = None
+
 
 class AnalyticsResult(BaseModel):
     total_emails: int = 0
